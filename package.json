@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/e121016373/pokerManager/issues"
   },
-  "homepage": "https://github.com/e121016373/pokerManager#readme",
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.1.0"
