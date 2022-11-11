@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pokerManager/static/css/main.2cfd6786.css",
+    "main.js": "/pokerManager/static/js/main.e7e2e809.js",
+    "index.html": "/pokerManager/index.html",
+    "main.2cfd6786.css.map": "/pokerManager/static/css/main.2cfd6786.css.map",
+    "main.e7e2e809.js.map": "/pokerManager/static/js/main.e7e2e809.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cfd6786.css",
+    "static/js/main.e7e2e809.js"
+  ]
+}
