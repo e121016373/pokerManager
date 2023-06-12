@@ -9,13 +9,13 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ArticleIcon from "@mui/icons-material/Article";
 import ListIcon from "@mui/icons-material/List";
 import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
-
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
-import PlayerList from "./components/ListModeComponent/PlayerList";
+import ListModeView from "./components/ListModeComponent/ListModeView";
 import "./styles.js";
-import TextBox from "./components/TextModeComponent/TextBox";
+import TextModeView from "./components/TextModeComponent/TextModeView";
+import { useText } from "./hooks/useText";
+import { usePlayer } from "./hooks/usePlayer";
 
 const MODE = {
   LIST: "listMode",
@@ -26,9 +26,11 @@ function App() {
   const [mode, setMode] = useState(MODE.LIST);
   const [error, setError] = useState("");
 
-  const clearError = useCallback(() => {
-    setError("");
-  }, []);
+  const { text, handleOnTextChange } = useText();
+  const { players, handleAddPlayer, handleRemovePlayer, updatePlayerInfo } =
+    usePlayer();
+
+  const clearError = useCallback(() => setError(""), []);
 
   const theme = createTheme({
     palette: {
@@ -91,24 +93,36 @@ function App() {
                 </ToggleButton>
               </ToggleButtonGroup>
               {mode === MODE.LIST && (
-                <PlayerList
+                <ListModeView
                   setError={setError}
+                  players={players}
+                  handleAddPlayer={handleAddPlayer}
+                  handleRemovePlayer={handleRemovePlayer}
+                  updatePlayerInfo={updatePlayerInfo}
                 />
               )}
               {mode === MODE.TEXT && (
-                <TextBox
+                <TextModeView
                   setError={setError}
+                  text={text}
+                  handleOnChange={handleOnTextChange}
                 />
+              )}
+              {error && (
+                <Grid2 container item sx={{ marginTop: "1rem", width: "100%" }}>
+                  <Alert
+                  onClose={clearError}
+                    severity="error"
+                    sx={{ width: "100%", whiteSpace: 'pre-line' }}
+                  >
+                    {error}
+                  </Alert>
+                </Grid2>
               )}
             </CardContent>
           </Card>
         </Grid2>
       </Container>
-      <Snackbar open={!!error} autoHideDuration={6000} onClose={clearError}>
-        <Alert onClose={clearError} severity="error" sx={{ width: "100%" }}>
-          {error}
-        </Alert>
-      </Snackbar>
     </ThemeProvider>
   );
 }

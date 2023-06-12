@@ -1,8 +1,8 @@
 # Poker Manager
 
 ### How to run the project?
-
-`npm run start`
+- `cd client`
+- `npm run start`
 
 ### How to deploy to Github Pages?
 

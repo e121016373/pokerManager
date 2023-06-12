@@ -18,7 +18,7 @@ export default function PlayerListItem({
   const [playerName, setPlayerName] = useState(name);
   const [buyIn, setBuyIn] = useState(buyInAmount);
   const [cashOut, setCashOut] = useState(currentAmount);
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(true);
 
   const handleClickEdit = useCallback(() => {
     setIsEdit((prev) => {
